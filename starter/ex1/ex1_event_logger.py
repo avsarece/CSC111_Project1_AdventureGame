@@ -48,7 +48,11 @@ class Event:
     # set of attributes, you can do that separately in the project1 folder. This class is part of
     # Exercise 1 and will be auto-graded.
 
-    # TODO: Add attributes below based on the provided descriptions above. Use the specified datatypes.
+    id_num: int
+    description: str
+    next_command: Optional[str] = None
+    next: Optional[Event] = None
+    prev: Optional[Event] = None
 
 
 class EventList:
