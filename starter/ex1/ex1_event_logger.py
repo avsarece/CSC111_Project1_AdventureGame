@@ -95,7 +95,18 @@ class EventList:
         """
         # Hint: You should update the previous node's <next_command> as needed
 
-        # TODO: Your code below
+        if self.first is None:
+            self.first = event
+            event.prev = None
+
+        else:
+            curr = self.first
+            while curr.next is not None:
+                curr = curr.next
+            curr.next = event
+            event.prev = curr
+            curr.next_command = command
+            self.last = event
 
     def remove_last_event(self) -> None:
         """Remove the last event from this event list.
