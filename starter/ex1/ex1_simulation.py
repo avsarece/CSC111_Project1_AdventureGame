@@ -101,6 +101,7 @@ class SimpleAdventureGame:
         else:
             return self._locations[self.current_location_id]
 
+
 class AdventureGameSimulation:
     """A simulation of an adventure game playthrough.
     """
