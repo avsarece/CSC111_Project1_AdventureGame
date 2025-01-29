@@ -104,7 +104,17 @@ class EventList:
     def get_id_log(self) -> list[int]:
         """Return a list of all location IDs visited for each event in this list, in sequence."""
 
-        # TODO: Your code below
+        if self.first is None:
+            return []
+
+        else:
+            id_visited_so_far = []
+            curr = self.first
+            while curr.next is not None:
+                id_visited_so_far.append(curr.id_num)
+                curr = curr.next
+
+            return id_visited_so_far
 
     # Note: You may add other methods to this class as needed but DO NOT CHANGE THE SPECIFICATION OF ANY OF THE ABOVE
 
