@@ -63,7 +63,7 @@ class EventList:
         - # TODO add descriptions of instance attributes here
 
     Representation Invariants:
-        - # TODO add any appropriate representation invariants, if needed
+        - (self.first is None and self.last is None) or (self.first is not None and self.last.next is None)
     """
     first: Optional[Event]
     last: Optional[Event]
