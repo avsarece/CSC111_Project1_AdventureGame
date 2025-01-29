@@ -60,7 +60,8 @@ class EventList:
     A linked list of game events.
 
     Instance Attributes:
-        - # TODO add descriptions of instance attributes here
+        - first: First event of the game.
+        - last: Last event of the game.
 
     Representation Invariants:
         - (self.first is None and self.last is None) or (self.first is not None and self.last.next is None)
