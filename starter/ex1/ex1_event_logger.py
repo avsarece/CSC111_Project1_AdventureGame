@@ -1,6 +1,5 @@
 """CSC111 EXERCISE 1: Text Adventure Game - Event Logger
 
-Instructions (READ THIS FIRST!)
 ===============================
 
 This Python module contains the code for Exercise 1. Please consult
