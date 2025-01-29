@@ -20,7 +20,7 @@ distribution of this code, whether as given or with any changes, are
 expressly prohibited. For more information on copyright for CSC111 materials,
 please consult our Course Syllabus.
 
- file is Copyright (c) 2025 CSC111 Teaching Team
+This file is Copyright (c) 2025 CSC111 Teaching Team
 """
 
 from __future__ import annotations
