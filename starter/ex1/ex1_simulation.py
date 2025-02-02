@@ -148,6 +148,11 @@ class AdventureGameSimulation:
         #  it to self._events.
         # Hint: current_location.available_commands[command] will return the next location ID
         # which executing <command> while in <current_location_id> leads to
+        self._events = EventList()
+        for command in commands:
+            next_location_id = current_location.available_commands[command]
+            event = Event(next_location_id, current_location.description, command)
+            self._events.add_event(event)
 
     def get_id_log(self) -> list[int]:
         """
