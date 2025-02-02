@@ -134,6 +134,7 @@ class AdventureGameSimulation:
 
         # TODO: Generate the remaining events based on the commands and initial location
         # Hint: Call self.generate_events with the appropriate arguments
+        self.generate_events(commands, self._game.get_location())
 
     def generate_events(self, commands: list[str], current_location: Location) -> None:
         """Generate all events in this simulation.
