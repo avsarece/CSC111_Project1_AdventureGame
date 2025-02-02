@@ -93,6 +93,19 @@ class EventList:
         """Add the given new event to the end of this event list.
         The given command is the command which was used to reach this new event, or None if this is the first
         event in the game.
+
+        >>> eventlist = EventList()
+        >>> event1 = Event(1, 'a')
+        >>> event2 = Event(2, 'b')
+        >>> event3 = Event(3, 'c')
+        >>> eventlist.add_event(event1, 'walk')
+        >>> eventlist.add_event(event2, 'run')
+        >>> eventlist.add_event(event3, 'jump')
+        >>> eventlist.remove_last_event()
+        >>> eventlist.remove_last_event()
+        >>> eventlist.is_empty()
+        >>> True
+
         """
         # Hint: You should update the previous node's <next_command> as needed
 
