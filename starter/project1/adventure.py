@@ -110,6 +110,12 @@ class AdventureGame:
 
         # TODO: Complete this method as specified
         # YOUR CODE BELOW
+        if loc_id in self._locations:
+            return self._locations[loc_id]
+        else:
+            return self._locations[self.current_location_id]
+
+
 
 
 if __name__ == "__main__":
