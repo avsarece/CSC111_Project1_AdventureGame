@@ -111,7 +111,6 @@ class EventList:
 
         if self.first is None:
             self.first = event
-            event.prev = None
 
         else:
             curr = self.first

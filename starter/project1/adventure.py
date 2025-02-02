@@ -38,7 +38,8 @@ class AdventureGame:
         - ongoing: Whether the game is ongoing or not
 
     Representation Invariants:
-        - # TODO add any appropriate representation invariants as needed
+        - self.current_location_id >= 0
+
     """
 
     # Private Instance Attributes (do NOT remove these two attributes):
@@ -117,8 +118,6 @@ class AdventureGame:
             return self._locations[self.current_location_id]
 
 
-
-
 if __name__ == "__main__":
 
     # When you are ready to check your work with python_ta, uncomment the following lines.
@@ -145,6 +144,9 @@ if __name__ == "__main__":
         # TODO: Add new Event to game log to represent current game location
         #  Note that the <choice> variable should be the command which led to this event
         # YOUR CODE HERE
+        event = Event(game.current_location_id, )
+        game_log.add_event(event, choice)
+
 
         # TODO: Depending on whether or not it's been visited before,
         #  print either full description (first time visit) or brief description (every subsequent visit) of location

@@ -26,11 +26,17 @@ class Location:
     """A location in our text adventure game world.
 
     Instance Attributes:
-        - # TODO Describe each instance attribute here
+        - id_num: integer id for this location
+        - description: brief description of this location
+        - available_commands: a mapping of available commands at this location to
+                                the location executing that command would lead to
 
     Representation Invariants:
         - # TODO Describe any necessary representation invariants
     """
+    id_num: int
+    description: str
+    available_commands: dict[str, int]
 
     # This is just a suggested starter class for Location.
     # You may change/add parameters and the data available for each Location object as you see fit.
@@ -58,10 +64,17 @@ class Item:
     """An item in our text adventure game world.
 
     Instance Attributes:
-        - # TODO Describe each instance attribute here
+        - Instance Attributes:
+        - name: the name of the item
+        - description: the description script of the item
+        - start_positiion: the location id where the item was found
+        - target_position: the target location id of the item
+        - target_points: the score gained after this item is found
 
     Representation Invariants:
-        - # TODO Describe any necessary representation invariants
+        - self.start_position > 0
+        - self.target_position > 0
+        - self.name != ""
     """
 
     # NOTES:
@@ -73,6 +86,7 @@ class Item:
     # All item objects in your game MUST be represented as an instance of this class.
 
     name: str
+    description: str
     start_position: int
     target_position: int
     target_points: int
