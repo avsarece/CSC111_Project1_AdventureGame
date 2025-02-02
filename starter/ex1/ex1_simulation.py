@@ -94,6 +94,12 @@ class SimpleAdventureGame:
     def get_location(self, loc_id: Optional[int] = None) -> Location:
         """Return Location object associated with the provided location ID.
         If no ID is provided, return the Location object associated with the current location.
+
+        >>> simpleadventuregame = SimpleAdventureGame('sample_locations.json', 1)
+        >>> simpleadventuregame.get_location(2)
+
+        >>> simpleadventuregame = SimpleAdventureGame('sample_locations.json', 4)
+        >>> simpleadventuregame.get_location()
         """
 
         if loc_id in self._locations:
