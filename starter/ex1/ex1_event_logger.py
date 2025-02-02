@@ -137,7 +137,7 @@ class EventList:
         else:
             id_visited_so_far = []
             curr = self.first
-            while curr.next is not None:
+            while curr is not None:
                 id_visited_so_far.append(curr.id_num)
                 curr = curr.next
 
