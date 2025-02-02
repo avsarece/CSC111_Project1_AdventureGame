@@ -142,7 +142,19 @@ class EventList:
             self.last = new_last_event
 
     def get_id_log(self) -> list[int]:
-        """Return a list of all location IDs visited for each event in this list, in sequence."""
+        """Return a list of all location IDs visited for each event in this list, in sequence.
+
+        >>> eventlist = EventList()
+        >>> event1 = Event(1, 'a')
+        >>> event2 = Event(2, 'b')
+        >>> event3 = Event(3, 'c')
+        >>> eventlist.add_event(event1, 'walk')
+        >>> eventlist.add_event(event2, 'run')
+        >>> eventlist.add_event(event3)
+        >>> eventlist.get_id_log()
+        [1,2,3]
+
+        """
 
         if self.first is None:
             return []
