@@ -34,7 +34,8 @@ class AdventureGame:
     """A text adventure game class storing all location, item and map data.
 
     Instance Attributes:
-        - # TODO add descriptions of public instance attributes as needed
+        - current_location_id: location id of the current location
+        - ongoing: Whether the game is ongoing or not
 
     Representation Invariants:
         - # TODO add any appropriate representation invariants as needed
