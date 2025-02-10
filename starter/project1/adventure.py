@@ -83,13 +83,6 @@ class AdventureGame:
         with open(filename, 'r') as f:
             data = json.load(f)  # This loads all the data from the JSON file
 
-        locations = {}
-        for loc_data in data['locations']:  # Go through each element associated with the 'locations' key in the file
-            location_obj = Location(loc_data['id'], loc_data['brief_description'], loc_data['long_description'],
-                                    loc_data['available_commands'], loc_data['items'])
-            location_obj.visited = False
-            locations[loc_data['id']] = location_obj
-
         items = []
         # TODO: Add Item objects to the items list; your code should be structured similarly to the loop above
         # YOUR CODE BELOW
@@ -102,6 +95,14 @@ class AdventureGame:
 
             items.append(item_obj)
 
+        locations = {}
+        for loc_data in data['locations']:  # Go through each element associated with the 'locations' key in the file
+            location_items = [item for item in items if item.start_position == loc_data['id']]
+            location_obj = Location(loc_data['id'], loc_data['brief_description'], loc_data['long_description'],
+                                    loc_data['available_commands'], location_items)
+            location_obj.visited = False
+            locations[loc_data['id']] = location_obj
+
         return locations, items
 
     def get_location(self, loc_id: Optional[int] = None) -> Location:
@@ -111,6 +112,10 @@ class AdventureGame:
 
         # TODO: Complete this method as specified
         # YOUR CODE BELOW
+        if loc_id in self._locations:
+            return self._locations[loc_id]
+        else:
+            return self._locations[self.current_location_id]
 
 
 if __name__ == "__main__":
@@ -156,7 +161,8 @@ if __name__ == "__main__":
 
         # Validate choice
         choice = input("\nEnter action: ").lower().strip()
-        while choice not in location.available_commands and choice not in menu:
+        while (choice not in location.available_commands and choice not in menu and not choice.startswith("take ")
+               and not choice.startswith("use ")):
             print("That was an invalid option; try again.")
             choice = input("\nEnter action: ").lower().strip()
 
@@ -171,16 +177,16 @@ if __name__ == "__main__":
             # ENTER YOUR CODE BELOW to handle other menu commands (remember to use helper functions as appropriate)
             elif choice == "score":
                 # Calculate and display score based on items in correct positions
-                score = sum(item.target_points for item in self._items 
-                          if item.start_position == item.target_position)
+                score = sum(item.target_points for item in location.items
+                            if item.start_position == item.target_position)
                 print("Current score:", score)
-        else:
+        elif choice.startswith("take ") or choice.startswith("use "):
             # Handle non-menu actions
             if choice.startswith("take "):
                 # Handle taking items
                 item_name = choice[5:]
-                for item in self._items:
-                    if item.name.lower() == item_name and item.start_position == location.id:
+                for item in location.items:
+                    if item.name.lower() == item_name and item.start_position == location.id_num:
                         item.start_position = -1  # -1 represents the inventory
                         print("Taken:", item_name)
                         break
@@ -189,18 +195,20 @@ if __name__ == "__main__":
             elif choice.startswith("use "):
                 # Handle using items
                 item_name = choice[4:]  # Remove "use " prefix
-                for item in self._items:
+                for item in location.items:
                     if item.name.lower() == item_name and item.start_position == -1:
-                        if location.id == item.target_position:
+                        if location.id_num == item.target_position:
                             print("Successfully used", item_name, "!")
-                            item.start_position = location.id
+                            item.start_position = location.id_num
                         else:
                             print("Can't use", item_name, "here.")
                         break
                 else:
                     print("You don't have that item.")
-            result = location.available_commands[choice]
-            game.current_location_id = result
+            else:
+                if choice in location.available_commands:
+                    result = location.available_commands[choice]
+                    game.current_location_id = result
 
             # TODO: Add in code to deal with actions which do not change the location (e.g. taking or using an item)
             # TODO: Add in code to deal with special locations (e.g. puzzles) as needed for your game
