@@ -34,12 +34,10 @@ class AdventureGame:
     """A text adventure game class storing all location, item and map data.
 
     Instance Attributes:
-        - current_location_id: location id of the current location
-        - ongoing: Whether the game is ongoing or not
+        - # TODO add descriptions of public instance attributes as needed
 
     Representation Invariants:
-        - self.current_location_id >= 0
-
+        - # TODO add any appropriate representation invariants as needed
     """
 
     # Private Instance Attributes (do NOT remove these two attributes):
@@ -89,6 +87,7 @@ class AdventureGame:
         for loc_data in data['locations']:  # Go through each element associated with the 'locations' key in the file
             location_obj = Location(loc_data['id'], loc_data['brief_description'], loc_data['long_description'],
                                     loc_data['available_commands'], loc_data['items'])
+            location_obj.visited = False
             locations[loc_data['id']] = location_obj
 
         items = []
@@ -112,10 +111,6 @@ class AdventureGame:
 
         # TODO: Complete this method as specified
         # YOUR CODE BELOW
-        if loc_id in self._locations:
-            return self._locations[loc_id]
-        else:
-            return self._locations[self.current_location_id]
 
 
 if __name__ == "__main__":
@@ -144,14 +139,15 @@ if __name__ == "__main__":
         # TODO: Add new Event to game log to represent current game location
         #  Note that the <choice> variable should be the command which led to this event
         # YOUR CODE HERE
-        event = Event(game.current_location_id, )
-        game_log.add_event(event, choice)
-
-
+        game_log.add_event(Event(choice, location.brief_description))
         # TODO: Depending on whether or not it's been visited before,
         #  print either full description (first time visit) or brief description (every subsequent visit) of location
         # YOUR CODE HERE
-
+        if not location.visited:
+            print(location.long_description)
+            location.visited = True  # Change from default False to True when visited
+        else:
+            print(location.brief_description)
         # Display possible actions at this location
         print("What to do? Choose from: look, inventory, score, undo, log, quit")
         print("At this location, you can also:")
@@ -173,9 +169,36 @@ if __name__ == "__main__":
             if choice == "log":
                 game_log.display_events()
             # ENTER YOUR CODE BELOW to handle other menu commands (remember to use helper functions as appropriate)
-
+            elif choice == "score":
+                # Calculate and display score based on items in correct positions
+                score = sum(item.target_points for item in self._items 
+                          if item.start_position == item.target_position)
+                print("Current score:", score)
         else:
             # Handle non-menu actions
+            if choice.startswith("take "):
+                # Handle taking items
+                item_name = choice[5:]
+                for item in self._items:
+                    if item.name.lower() == item_name and item.start_position == location.id:
+                        item.start_position = -1  # -1 represents the inventory
+                        print("Taken:", item_name)
+                        break
+                else:
+                    print("That item isn't here.")
+            elif choice.startswith("use "):
+                # Handle using items
+                item_name = choice[4:]  # Remove "use " prefix
+                for item in self._items:
+                    if item.name.lower() == item_name and item.start_position == -1:
+                        if location.id == item.target_position:
+                            print("Successfully used", item_name, "!")
+                            item.start_position = location.id
+                        else:
+                            print("Can't use", item_name, "here.")
+                        break
+                else:
+                    print("You don't have that item.")
             result = location.available_commands[choice]
             game.current_location_id = result
 
