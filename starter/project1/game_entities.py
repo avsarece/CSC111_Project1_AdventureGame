@@ -19,45 +19,7 @@ please consult our Course Syllabus.
 This file is Copyright (c) 2025 CSC111 Teaching Team
 """
 from dataclasses import dataclass
-
-
-@dataclass
-class Location:
-    """A location in our text adventure game world.
-
-    Instance Attributes:
-        - id_num: integer id for this location
-        - description: brief description of this location
-        - available_commands: a mapping of available commands at this location to
-                                the location executing that command would lead to
-
-    Representation Invariants:
-        - # TODO Describe any necessary representation invariants
-    """
-    id_num: int
-    description: str
-    available_commands: dict[str, int]
-
-    # This is just a suggested starter class for Location.
-    # You may change/add parameters and the data available for each Location object as you see fit.
-    #
-    # The only thing you must NOT change is the name of this class: Location.
-    # All locations in your game MUST be represented as an instance of this class.
-
-    def __init__(self, location_id, brief_description, long_description, available_commands, items,
-                 visited=False) -> None:
-        """Initialize a new location.
-
-        # TODO Add more details here about the initialization if needed
-        """
-
-        self.id_num = location_id
-        self.brief_description = brief_description
-        self.long_description = long_description
-        self.available_commands = available_commands
-        self.items = items
-        self.visited = visited
-
+from typing import Optional
 
 @dataclass
 class Item:
@@ -90,6 +52,50 @@ class Item:
     start_position: int
     target_position: int
     target_points: int
+
+@dataclass
+class Location:
+    """A location in our text adventure game world.
+
+    Instance Attributes:
+        - id_num: integer id for this location
+        - description: brief description of this location
+        - available_commands: a mapping of available commands at this location to
+                                the location executing that command would lead to
+
+    Representation Invariants:
+        - # TODO Describe any necessary representation invariants
+    """
+    id_num: int
+    description: str
+    available_commands: dict[str, int]
+    brief_description = str
+    long_description = str
+    items = Optional[list[Item]]
+    visited = bool
+
+    # This is just a suggested starter class for Location.
+    # You may change/add parameters and the data available for each Location object as you see fit.
+    #
+    # The only thing you must NOT change is the name of this class: Location.
+    # All locations in your game MUST be represented as an instance of this class.
+
+    def __init__(self, location_id, brief_description, long_description, available_commands, items,
+                 visited=False) -> None:
+        """Initialize a new location.
+
+        # TODO Add more details here about the initialization if needed
+        """
+
+        self.id_num = location_id
+        self.brief_description = brief_description
+        self.long_description = long_description
+        self.available_commands = available_commands
+        self.items = items
+        self.visited = visited
+
+
+
 
 
 # Note: Other entities you may want to add, depending on your game plan:
