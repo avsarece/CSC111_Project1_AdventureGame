@@ -1,0 +1,197 @@
+{
+  "locations": [
+    {
+      "id": 1,
+      "name": "Bahen Centre",
+      "brief_description": "You are on the first floor of the Bahen Center. There are elevators to the West, and an exit from the building to St. George street to the East. You see something shiny on the ground -- looks like a toonie?",
+      "long_description": "You are on the first floor of the Bahen Center. It's usually crowded at this time of the day, but today it's eerily quiet. Only a few students are studying at the table near the doors. You better not disturb them. One student is rushing down the corridor, wearing a heavy-looking backpack and carrying a textbook in their arms. There are elevators to the West, and an exit from the building to St. George street to the East.",
+      "available_commands": {
+        "go east": 2,
+        "go south": 4
+      },
+      "items": ["toonie"],
+      "door": false,
+      "password": null,
+      "is_unlocked": false
+    },
+    {
+      "id": 2,
+      "name": "Outside of Bahen",
+      "brief_description": "You decide to exit Bahen Center. You encounter a food truck driver who stops you for a word",
+      "long_description": "You decide to exit Bahen Center. On east, a little far away, is the Robarts library located, whereas towards South, you locate University College. Next to the entrance to Bahen, you locate a student fair stand that has the name \"Make your wishes come true, only for 2 cents.\". Not believing but at the same time hopeless, you decide to go next to the stand. When you appraoch, you see an eery-looking food truck driver sitting on the stand",
+      "available_commands": {
+        "go east": 3,
+        "go south": 5,
+        "go west": 1
+      },
+      "items": ["key"],
+      "door": false,
+      "password": null,
+      "is_unlocked": false
+    },
+    {
+      "id": 3,
+      "name": "Robarts Libray",
+      "brief_description": "You are at Robarts Library, Is this an Ancient book? Interesting, but the book is locked, do you have a key?",
+      "long_description": "Now there you are, Robarts library; the library which has seen you at your worst, especially during finals month. You shiver a bit, just thinking of the horryfying Problem Set sessions for MAT137 with your friend. Shaking this thought, you enter the building, and you start feeling nostalgic: as if one of your clues is here! You see a misplaced book. It look so old, but something tells you it has your answers. But hey, this book is locked. WHATEVER CAN OPEN IT?",
+      "available_commands": {
+        "go west": 2,
+        "go south": 6
+      },
+      "items": ["Ancient book"],
+      "door": false,
+      "password": null,
+      "is_unlocked": false
+    },
+    {
+      "id": 4,
+      "name": " Outside of Knox College",
+      "brief_description": "You are right outside Knox College, a place of curiosity and higher beings",
+      "long_description": "You are right outside Knox College where to the north you have Bahen canter. but there is a huge lock on the door with a panel. It looks like you need a password.",
+      "available_commands": {
+        "go north": 1,
+        "go east": 5
+      },
+      "items": [],
+      "door": true,
+      "password": "2550",
+      "is_unlocked": false
+    },
+    {
+      "id": 6,
+      "name": "Queen's Park",
+      "brief_description": "You are at the beautiful Queen's Park, where the Magic happens and the statue stands.",
+      "long_description": "You are now in front of the glorious Equestrian statue of Edward VII. What is that you see? is that the USB driver? You now realize that you dropped it while hopelessly trying to get to your MAT137 test on time. PHEW, one item off the list. To the west, you see University College, a place with a lot of friends that can help you get your stuff on time.",
+      "available_commands": {
+        "go north": 3,
+        "go west": 5
+      },
+      "items": ["USB driver"],
+      "door": false,
+      "password": null,
+      "is_unlocked": false
+    },
+    {
+      "id": 5,
+      "name": "University College",
+      "brief_description": "You are at University College, a place steeped in tradition and academic rigor and a place you go to frequently with friends that may help you achieve your goal on time",
+      "long_description": "Welcome to University College. To your west is the famous Knox College and down to the south you locate your beloved dorm room. Hey, that's your MAT137 professor who you were with when you last saw your charger, a lucky day? Maybe. Why don't you go say hi?",
+      "available_commands": {
+        "go north": 2,
+        "go south": 8,
+        "go east": 6,
+        "go west": 4
+      },
+      "items": [],
+      "door": false,
+      "password": null,
+      "is_unlocked": false
+    },
+    {
+      "id": 8,
+      "name": "Dorm room",
+      "brief_description": "You are at your dorm, the place where you should have slept.",
+      "long_description": "This is your dorm room, the final destination you have to come to in order to submit your project and save your friendship",
+      "available_commands": {
+        "go north": 5
+      },
+      "items": [],
+      "door": false,
+      "password": null,
+      "is_unlocked": false
+    },
+    {
+      "id": 7,
+      "name": "Knox College",
+      "brief_description": "You are at Knox College",
+      "long_description": "You are now at Knox College, with the GG (the giant genie). You have come a long way, don't mess it up with him.",
+      "available_commands": {
+        "go east": 4
+      },
+      "items": ["Laptop charger", "UofT mug"],
+      "door": false,
+      "password": null,
+      "is_unlocked": false
+    }
+  ],
+  "items": [
+    {
+      "name": "toonie",
+      "description": "There is a toonie on the ground. Someone must have dropped it.",
+      "start_position": 1,
+      "target_position": 2,
+      "target_points": 5
+    },
+    {
+      "name": "key",
+      "description": "The medium gave me a key. I should take it.",
+      "start_position": 2,
+      "target_position": 3,
+      "target_points": 5
+    },
+    {
+      "name": "Ancient book",
+      "description": "contains an important message",
+      "start_position": 3,
+      "target_position": 3,
+      "target_points": 0
+    },
+    {
+      "name": "USB driver",
+      "description": "Your missing USB! Hurray",
+      "start_position": 6,
+      "target_position": 8,
+      "target_points": 10
+    },
+    {
+      "name": "Laptop charger",
+      "description": "Another missing item collected! Maybe we can do it after all?",
+      "start_position": 7,
+      "target_position": 8,
+      "target_points": 10
+    },
+    {
+      "name": "UofT mug",
+      "description": "Your beloved lucky charm is with you now!",
+      "start_position": 7,
+      "target_position": 8,
+      "target_points": 10
+    }
+  ],
+  "npcs": [
+    {
+      "name": "food truck driver",
+      "location_id": 2,
+      "gives_item": "key",
+      "required_item": "toonie",
+      "message": "Food Truck driver: Ey, youngblood! You want this key in return for your toonie? It has a lil capital R on it and you seem like a good ol' kid that can understand it. If you want it, use your toonie here, and take this key.",
+      "after_message": ""
+    },
+    {
+      "name": "professor Cui",
+      "location_id": 5,
+      "gives_item": "A question",
+      "required_item": "",
+      "message": "Professor Cui: Hi there, so I understand that you are looking for your Laptop charger and UofT mug in order to submit an important project. I love me a hard-working kid, but you are not getting off the hook that easy. You have to compute this integral for me to tell you where you can find somebody that knows where they are. Compute the integral from e to 1 of 1/x dx",
+      "after_message": "Professor Cui: I knew you could do it! now for my end of the bargain, I will give you a hint: Go to a place that describes the purpose of adversity, you know it's a place filled with curiosity"
+    },
+    {
+      "name": "Genie",
+      "location_id": 4,
+      "gives_item": "A question",
+      "required_item": "",
+      "message": "(POOF) Genie: Hi there, having a little trouble? I can open that door for you, but not so fast. First you have to enter the password. I am feeling generous today and your Prof. is a dear friend, so to have the password, compute the integral from 0 to 10 of (x^3 + 5) dx",
+      "after_message": "Wow, think we got a smart cookie here! I am a man of my word. Here you enter my humble abode: Knox College"
+
+    },
+    {
+      "name": "Genie",
+      "location_id": 7,
+      "gives_item": ["Laptop charger","uofT mug"],
+      "required_item": "",
+      "message": "Genie: I like you, kid. You look smart and I know that you are here for information about your stuff that will help you submit the project in time, so here I am granting you 3 wishes: \n 1) I will slow time a bit for you to ensure you don't get late. \n 2) I have your Laptop charger here with me, so you can take it. \n 3) I also have your UofT mug, so you can take it as well. \n Well, my duty ends here. Good luck kid! (POOF)",
+      "after_message": ""
+
+    }
+  ]
+}
