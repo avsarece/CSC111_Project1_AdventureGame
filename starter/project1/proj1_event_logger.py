@@ -81,7 +81,6 @@ class EventList:
             print(f"Location: {curr.id_num}, Command: {curr.next_command}")
             curr = curr.next
 
-    # TODO: Complete the methods below, based on the given descriptions.
     def is_empty(self) -> bool:
         """Return whether this event list is empty."""
 
@@ -151,6 +150,17 @@ class EventList:
 
             return id_visited_so_far
 
+    def undo_last_command(self, command):
+        """Undo the last command made by the player."""
+        if self.last is None:
+            print("No actions to undo.")
+
+        if self.prev is not None:
+            self.last = self.prev
+            self.prev = self.last.prev  # Update prev to the previous command
+        else:
+            self.last = None
+
     # Note: You may add other methods to this class as needed
 
 
@@ -159,8 +169,9 @@ if __name__ == "__main__":
     # When you are ready to check your work with python_ta, uncomment the following lines.
     # (Delete the "#" and space before each line.)
     # IMPORTANT: keep this code indented inside the "if __name__ == '__main__'" block
-    # import python_ta
-    # python_ta.check_all(config={
-    #     'max-line-length': 120,
-    #     'disable': ['R1705', 'E9998', 'E9999']
-    # })
+    import python_ta
+
+    python_ta.check_all(config={
+        'max-line-length': 120,
+        'disable': ['R1705', 'E9998', 'E9999']
+    })

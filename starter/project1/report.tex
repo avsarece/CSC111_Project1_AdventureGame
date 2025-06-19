@@ -6,99 +6,144 @@
 \usepackage[margin=0.75in]{geometry}
 
 \title{CSC111 Winter 2025 Project 1}
-\author{TODO: FILL IN YOUR NAME(S) HERE}
+\author{ECE AVSAR, MOHAMED ABDELFATTAH}
 \date{\today}
 
 \begin{document}
 \maketitle
 
 \section*{Running the game}
-We should be able to run your game by simply running \texttt{adventure.py}. If you have any other requirements (e.g., installing certain modules), describe them here. Otherwise, skip this section.
+We should be able to run your game by simply running \texttt{adventure.py}.  
+If you have any other requirements (e.g., installing certain modules), describe them here.  
+Otherwise, skip this section.
 
 \section*{Game Map}
 Example game map below (edit it to show your actual game map):
 
 \begin{verbatim}
-  1  2  3
- -1  4 -1
- -1  5 -1
+  -1 -1 1  2 3
+  -1  7 4  5 6
+  -1 -1 -1 8 -1
 \end{verbatim}
 
 Starting location is: 1
 
 \section*{Game solution}
 List of commands:
+\begin{verbatim}
+["take toonie", "go east", "use toonie", "take key", "go east", "use key",
+ "go south", "take USB driver", "go west", "1", "go west", "2550",
+ "take laptop charger", "take UofT mug", "go east", "go east", "go south",
+ "use USB driver", "use laptop charger", "use UofT mug"]
+\end{verbatim}
 
 \section*{Lose condition(s)}
-Description of how to lose the game:
+Description of how to lose the game:  
+If the player moves more than 30 times within the map without bringing the required items  
+to their dorm AND using them, they lose the game.
 
-List of commands:
+List of commands: 
+\begin{verbatim}
+["go east", "inventory", "use toonie", "take key", "inventory", "go east",
+ "use key", "look", "go south", "take USB driver", "go west", "score", "7",
+ "6", "1", "go west", "4350", "2550", "take laptop charger", "take UofT mug",
+ "go east", "go east", "go east", "undo", "go south", "use Usb driver",
+ "score", "use laptop charger", "use UofT mug"]
+\end{verbatim}
 
-Which parts of your code are involved in this functionality:
-
-% Copy-paste the above if you have multiple lose conditions and describe each possible way to lose the game
+\textbf{Code parts involved:}  
+In \texttt{adventure.py}, from line 291-321 (to check if the player takes the item or uses it  
+at correct positions and affects the inventory accordingly) and 345-347 (for game over screen).  
+If the player does not take and use the items in their starting and target locations,  
+and if the player's number of commands reaches or exceeds 30, they lose the game.
 
 \section*{Inventory}
 
 \begin{enumerate}
-\item All location IDs that involve items in the game:
+    \item \textbf{All location IDs that involve items in the game:}
 
-\item Item data:
-\begin{enumerate}
-    \item For Item 1:
-    \begin{itemize}
-    \item Item name:
-    \item Item start location ID:
-    \item Item target location ID:
-    \end{itemize}
-        \item For Item 2:
-    \begin{itemize}
-    \item Item name:
-    \item Item start location ID:
-    \item Item target location ID:
-    \end{itemize}
-        \item For Item 3:
-    \begin{itemize}
-    \item Item name:
-    \item Item start location ID:
-    \item Item target location ID:
-    \end{itemize}
-    % Copy-paste the above if you have more items, to list ALL items
-\end{enumerate}
+    \item \textbf{Item data:}
+    \begin{enumerate}
+        \item \textbf{Item 1:}
+        \begin{itemize}
+        \item Name: \texttt{"toonie"}
+        \item Start location ID: 1
+        \item Target location ID: 2
+        \end{itemize}
+        \item \textbf{Item 2:}
+        \begin{itemize}
+        \item Name: \texttt{"key"}
+        \item Start location ID: 2
+        \item Target location ID: 3
+        \end{itemize}
+        \item \textbf{Item 3:}
+        \begin{itemize}
+        \item Name: \texttt{"ancient book"}
+        \item Start location ID: 3
+        \item Target location ID: 3
+        \end{itemize}
+    \end{enumerate}
 
-    \item Exact command(s) that should be used to pick up an item (choose any one item for this example), and the command(s) used to use/drop the item (can copy the list you assigned to \texttt{inventory\_demo} in the \texttt{project1\_simulation.py} file)
-    \item Which parts of your code (file, class, function/method) are involved in handling the \texttt{inventory} command:
+    \item \textbf{Exact command(s) for picking up and using/dropping items:}  
+    \texttt{"take [item]"} and \texttt{"use [item]"}
+
+    \item \textbf{Code parts involved:}  
+    In \texttt{adventure.py}, \texttt{AdventureGame} class (inventory attribute),  
+    \texttt{get\_inventory\_items} function from lines 231-235.
 \end{enumerate}
 
 \section*{Score}
 \begin{enumerate}
+    \item \textbf{How players earn scores:}  
+    Players earn scores by taking items from their starting position and using them in their target position.  
+    Example:  
+    \begin{verbatim}
+    ["take toonie", "go east", "use toonie"]
+    \end{verbatim}
 
-    \item Briefly describe the way players can earn scores in your game. Include the first location in which they can increase their score, and the exact list of command(s) leading up to the score increase:
+    \item \textbf{Score tracking demo:}
+    \begin{verbatim}
+    ["take toonie", "go east", "use toonie", "score"]
+    \end{verbatim}
 
-
-    \item Copy the list you assigned to \texttt{scores\_demo} in the \texttt{project1\_simulation.py} file into this section of the report:
-
-
-    \item Which parts of your code (file, class, function/method) are involved in handling the \texttt{score} functionality:
+    \item \textbf{Code parts involved:}  
+    In \texttt{adventure.py}, lines 225-229.
 \end{enumerate}
 
 \section*{Enhancements}
 \begin{enumerate}
-    \item Describe your enhancement \#1 here
+    \item \textbf{NPC Class}
     \begin{itemize}
-        \item Brief description of what the enhancement is (if it's a puzzle, also describe what steps the player must take to solve it):
-        \item Complexity level (choose from low/medium/high):
-        \item Reasons you believe this is the complexity level (e.g., mention implementation details, how much code did you have to add/change from the baseline, what challenges did you face, etc.)
+        \item Description: Implemented an NPC class that increases player engagement  
+        with attributes such as messages and interactions to solve puzzles.
+        \item Complexity level: High
+        \item Reason: Required modifying \texttt{game\_entities.py}, adding NPCs to JSON,  
+        and adjusting \texttt{\_load\_game\_data}.
     \end{itemize}
 
-    % Uncomment below section if you have more enhancements; copy-paste as needed
-    %\item Describe your enhancement here
-    %\begin{itemize}
-    %    \item Basic description of what the enhancement is:
-    %    \item Complexity level (low/medium/high):
-    %    \item Reasons you believe this is the complexity level (e.g., mention implementation details)
-    %\end{itemize}
-\end{enumerate}
+    \item \textbf{Location Class Enhancements}
+    \begin{itemize}
+        \item Description: Added attributes \texttt{door}, \texttt{password}, and \texttt{is\_unlocked}  
+        to track locked doors and implement a password puzzle.
+        \item Complexity level: Medium
+        \item Reason: Adjustments were needed in \texttt{Location} class, but it wasn’t overly complex.
+    \end{itemize}
 
+    \item \textbf{Key-Lock Puzzle and Math Problems}
+    \begin{itemize}
+        \item Description: Added puzzles involving retrieving a key, solving math problems, and unlocking doors.
+        \item Complexity level: Low
+        \item Reason: Involved minor code adjustments, mainly in \texttt{adventure.py}  
+        (lines 314-316, 329-334, 336-343).
+    \end{itemize}
+
+    \item \textbf{Unlock Function}
+    \begin{itemize}
+        \item Description: Implemented an \texttt{unlock} command.
+        \item Complexity level: Medium
+        \item Reason: Required three attributes in \texttt{Location} class and code changes in  
+        \texttt{adventure.py} (lines 277-289).
+    \end{itemize}
+\end{enumerate}
 
 \end{document}
